@@ -1,28 +1,49 @@
-<h1>Real Estate Inquiry</h1>
-<form [formGroup]="inquiryForm" (ngSubmit)="submit()">
-  <label>
-    Name
-    <input formControlName="name" />
-  </label>
-  <label>
-    Email
-    <input formControlName="email" type="email" />
-  </label>
-  <label>
-    Phone
-    <input formControlName="phone" />
-  </label>
-  <label>
-    Area
-    <input formControlName="area" />
-  </label>
-  <label>
-    Budget
-    <input formControlName="budget" />
-  </label>
-  <label>
-    Locality
-    <input formControlName="locality" />
-  </label>
-  <button type="submit">Submit</button>
-</form>
+<div class="landing">
+  <section class="hero">
+    <h1>Find Your Next Home</h1>
+    <p>Tell us about your requirements and we'll contact you with options.</p>
+  </section>
+
+  <section class="inquiry">
+    <form [formGroup]="inquiryForm" (ngSubmit)="submit()">
+      <div class="field">
+        <label for="name">Name</label>
+        <input id="name" formControlName="name" placeholder="Full name" required />
+        <span class="error" *ngIf="inquiryForm.controls.name.touched && inquiryForm.controls.name.invalid">
+          Name is required
+        </span>
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" formControlName="email" type="email" placeholder="you@example.com" required />
+        <span class="error" *ngIf="inquiryForm.controls.email.touched && inquiryForm.controls.email.invalid">
+          Valid email is required
+        </span>
+      </div>
+
+      <div class="field">
+        <label for="phone">Phone</label>
+        <input id="phone" formControlName="phone" type="tel" placeholder="Optional" />
+      </div>
+
+      <div class="field">
+        <label for="area">Area (sq ft)</label>
+        <input id="area" type="number" formControlName="area" />
+      </div>
+
+      <div class="field">
+        <label>Budget: {{ inquiryForm.controls.budget.value | currency }}</label>
+        <input type="range" formControlName="budget" min="50000" max="1000000" step="5000" />
+      </div>
+
+      <div class="field">
+        <label for="locality">Locality</label>
+        <input id="locality" formControlName="locality" />
+      </div>
+
+      <button type="submit" [disabled]="inquiryForm.invalid">Submit Inquiry</button>
+    </form>
+    <div class="thank-you" *ngIf="submitted">Thank you for your inquiry!</div>
+  </section>
+</div>
