@@ -1,0 +1,9 @@
+Angular Component Generation Log:
+
+✓ components/hero        --> ng g c components/hero
+✓ components/projects    --> ng g c components/projects
+✓ components/about       --> ng g c components/about
+✓ components/contact     --> ng g c components/contact
+✓ components/footer      --> ng g c components/footer
+
+All components created and declared in AppModule.
